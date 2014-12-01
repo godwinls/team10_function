@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>EBAY</title>
+<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+<header>
+<h1><%= title %></h1>
+</header>
+
+<nav>
+<span><a title="home" href="/">Home</a></span>
+
+<% if (user) { %>
+  <% if (user.Person_buyActivate==0) {%>
+  <form method="get" name="form1" id="form1" action="/bactivate">    
+    <input id="submit" name="submit" type="submit" value="Activate Buying" />
+  </form>
+  <% } else { %>
+  <form method="get" name="form1" id="form1" action = "/bdeactivate">    
+    <input id="submit" name="submit" type="submit" value="Deactivate Buying"/>
+  </form>
+  <% } %>
+  
+  <% if (user.Person_sellActivate==0) {%>
+  <form method="get" name="form2" id="form2" action="/sactivate">    
+    <input id="submit" name="submit" type="submit" value="Activate to Sell"/>
+  </form>
+  <% } else { %>
+  <form method="get" name="form2" id="form2" action="/sdeactivate">    
+    <input id="submit" name="submit" type="submit" value="Deactivate Selling"/>
+  </form>
+  <span><a title="Sell" href="/sell">Sell One Now!</a></span>
+  <% } %>
+  <span><a title="Log out" href="/signOut">Sign Out</a></span>
+  <span><a title="My Account" href="/myaccount">My Account</a></span>
+  <span><a title="Shopping Cart" href="/cart">Shopping Cart</a></span>
+<% } else { %>
+  <span><a title="Log In" href="/signIn">Sign In</a></span>
+  <span><a title="Register" href="/signUp">Sign Up</a></span>
+  <span><a title="Shopping Cart" href="/cart">Shopping Cart</a></span>
+<% } %>
+</nav>
+
+<article>

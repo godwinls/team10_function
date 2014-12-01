@@ -1,0 +1,42 @@
+<%- include header %>
+<h2> PRODUCT CATEGORY </h2> 
+<%= result[0].Category_name%>
+<h2> PRODUCT NAME </h2> 
+<%= result[0].Product_name%>
+<h2> PRODUCT AVAILABLE </h2>
+<%= result[0].Product_quantity%>
+<h2> PRODUCT PRICE </h2> 
+<%= result[0].Product_price%>
+<h2> PRODUCT CONDITION </h2>
+<% if (result[0].Product_condition==0) {%>
+<p>new</p>
+<%}%>
+<% if (result[0].Product_condition==1) {%>
+<p>used</p>
+<%}%>
+<h2> PRODUCT SELLER </h2> 
+<%= result[0].Person_first_name + " "+ result[0].Person_last_name %>
+<h2> PRODUCT DESCRIPTION </h2> 
+<%= result[0].Product_info%>
+
+<% if (result[0].Product_type==0) {%>
+<form method="post" name="form1" id="form1">    
+    <input id="submit" name="submit" type="submit" value="BUY NOW!" onclick="" />
+</form>
+<%}%>
+
+<% if (result[0].Product_type==1) {%>
+<form method="post" name="form1" id="form1">    
+    <input id="submit" name="submit" type="submit" value="BID!" onclick="" />
+</form>
+<%}%>
+
+<% if (result[0].Product_type==2) {%>
+<form method="post" name="form1" id="form1">    
+    <input id="submit" name="submit" type="submit" value="BUY NOW!" onclick="" />
+</form>
+<form method="post" name="form2" id="form2">    
+    <input id="submit" name="submit" type="submit" value="BID!" onclick="" />
+</form>
+<%}%>
+<%- include footer %>

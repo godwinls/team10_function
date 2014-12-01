@@ -1,0 +1,32 @@
+<%- include header %>
+<h1> User Info </h1>
+<h2> USER NAME </h2> 
+<%= presult[0].Person_first_name + " " +presult[0].Person_last_name%>
+<h2> USER EMAIL ADDRESS</h2> 
+<%= presult[0].Person_email%>
+<h2> USER ADDRESS </h2>
+<%= presult[0].Person_address%>
+<h2> USER STATE </h2>
+<%= presult[0].Person_state%>
+<h2> USER CITY </h2>
+<%= presult[0].Person_city%>
+<h2> USER ZIP </h2>
+<%= presult[0].Person_zip%>
+<h2> USER SSN </h2>
+<%= presult[0].Person_ssn%>
+<h1> Sell history </h1>
+<h2> User's Seller Rate </h2>
+<%= presult[0].Seller_rate%>
+<h2> User's Sell history, click for details</h2>
+<% for(var i=0; i<sresult.length; i++) { %>
+  <p><a href="/transactions/<%= sresult[i].TransHistory_id %>"><%= sresult[i].Product_name%></a> </p>
+<%}%>
+<h1> Buy history </h1>
+<h2> User's Buy history, click for details</h2>
+<% for(var i=0; i<bresult.length; i++) { %>
+  <p><a href="/transactions/<%= bresult[i].TransHistory_id %>"><%= bresult[i].Product_name%></a> </p>
+<%}%>
+
+
+
+<%- include footer %>

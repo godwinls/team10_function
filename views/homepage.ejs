@@ -1,0 +1,11 @@
+<%- include header %>
+<h1> CATEGORY  </h1>
+<% for(var i=0; i<cat_result.length; i++) { %>
+  <h2><a href="/Category/<%= cat_result[i].Category_id %>"><%= cat_result[i].Category_name %></a> </h2>
+<%}%>
+
+<h1> Product  </h1>
+<% for(var i=0; i<pro_result.length; i++) { %>
+  <h2><a href="/Product/<%= pro_result[i].Product_id %>"><%= pro_result[i].Product_name %></a> </h2>
+<%}%>
+<%- include footer %>

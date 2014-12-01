@@ -1,0 +1,22 @@
+<%- include header %>
+<form method="post" action= "/sell">
+  Product Name：     <input type="text" name="Product_name"/><br/>
+  Product Price：     <input type="text" name="Product_price"/><br/>
+  Product Quantity：  <input type="number" name="Product_quantity" min= "1"/><br/>
+  Product Info:       <input type="text" name="Product_info"/><br/>
+  Product Category：  <select name="Product_category">
+                      <option value="1">Appliance</option>
+                      <option value="2">Food</option>
+                      </select><br/>
+  Product Condition:  <select name="Product_condition">
+                      <option value="0">New</option>
+                      <option value="1">Used</option>
+                      </select><br/>
+  Buy or Bid：  <select name="Product_type">
+                      <option value="0">Buy</option>
+                      <option value="1">Bid</option>
+                      </select><br/>
+  
+         <input type="submit" value="Sell"/>
+</form>
+<%- include footer %>

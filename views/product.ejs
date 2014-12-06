@@ -4,9 +4,19 @@
 <h2> PRODUCT NAME </h2> 
 <%= result[0].Product_name%>
 <h2> PRODUCT AVAILABLE </h2>
+<%if (result[0].Product_quantity==0){%>
+<p>Sold Out</p>
+<%}else{%>
 <%= result[0].Product_quantity%>
+<%}%>
+<% if (result[0].Product_type==0) {%>
 <h2> PRODUCT PRICE </h2> 
 <%= result[0].Product_price%>
+<%}%>
+<% if (result[0].Product_type==1) {%>
+<h2> PRODUCT Bid Start PRICE </h2> 
+<%= result[0].Product_bid_start_price%>
+<%}%>
 <h2> PRODUCT CONDITION </h2>
 <% if (result[0].Product_condition==0) {%>
 <p>new</p>
@@ -20,23 +30,44 @@
 <%= result[0].Product_info%>
 
 <% if (result[0].Product_type==0) {%>
-<form method="post" name="form1" id="form1">    
-    <input id="submit" name="submit" type="submit" value="BUY NOW!" onclick="" />
+<form method="post" name="form1" id="form1" action="/Product/buy/<%=result[0].Product_id%>">    
+    <input id="submit" name="submit" type="submit" value="BUY NOW!" />
+    <input type ="hidden" id="id" name="quantity" value="<%=result[0].Product_quantity %>" />
 </form>
+<%} else {%>
+<% var now = new Date(); %>
+<% if (result[0].Product_type==1 && result[0].Product_bid_end_time>now && result[0].Product_bid_end==0) {%>
+<form method="post" name="form2" id="form2" action="/Product/bid/<%=result[0].Product_id%>">    
+    <input id="submit" name="submit" type="submit" value="BID!" />
+    <input id="mprice" name="myprice" type="text" />
+    <input type ="hidden" id="id" name="quantity" value="<%=result[0].Product_quantity %>" />
+</form>
+<h2> Current Price </h2>
+current highest price: <%if (bresult[0]!=null) {%>
+<%=bresult[0].Bid_price%>
+<%} else {%>
+Nobody have bid on this yet.
 <%}%>
-
-<% if (result[0].Product_type==1) {%>
-<form method="post" name="form1" id="form1">    
-    <input id="submit" name="submit" type="submit" value="BID!" onclick="" />
+<%} else if (result[0].Product_type==1 && result[0].Product_bid_end_time<now && result[0].Product_bid_end==0){%>
+<form method="post" name="form2" id="form2" action="/Product/bid/<%=result[0].Product_id%>">    
+    <input id="submit" name="submit" type="submit" value="Auction Has End! In Processing" disabled/>
 </form>
+<h2> Current Price </h2>
+current highest price: <%if (bresult[0]!=null) {%>
+<%=bresult[0].Bid_price%>
+<%} else {%>
+Nobody have bid on this yet.
 <%}%>
-
-<% if (result[0].Product_type==2) {%>
-<form method="post" name="form1" id="form1">    
-    <input id="submit" name="submit" type="submit" value="BUY NOW!" onclick="" />
+<%}else {%>
+<form method="post" name="form2" id="form2" action="/Product/bid/<%=result[0].Product_id%>">    
+    <input id="submit" name="submit" type="submit" value="Auction Has End! Please Check your Acount" disabled/>
 </form>
-<form method="post" name="form2" id="form2">    
-    <input id="submit" name="submit" type="submit" value="BID!" onclick="" />
-</form>
+<h2> Current Price </h2>
+current highest price: <%if (bresult[0]!=null) {%>
+<%=bresult[0].Bid_price%>
+<%} else {%>
+Nobody have bid on this yet.
+<%}%>
+<%}%>
 <%}%>
 <%- include footer %>

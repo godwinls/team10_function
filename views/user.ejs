@@ -1,0 +1,9 @@
+<%- include header %>
+<h1> User Info </h1>
+<h2> USER NAME </h2> 
+<%= result[0].Person_first_name + " " +result[0].Person_last_name%>
+<h2> USER EMAIL ADDRESS</h2> 
+<%= result[0].Person_email%>
+<h2> USER SELL Rate</h2> 
+<%= result[0].Seller_rate%>
+<% include footer %>

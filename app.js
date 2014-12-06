@@ -20,7 +20,9 @@ var signIn = require('./routes/signIn')
   , cart = require('./routes/shoppingcart')
   , buy = require('./routes/buy')
   , sell = require('./routes/sell')
-  , trans = require('./routes/trans');
+  , trans = require('./routes/trans')
+  , user = require('./routes/user')
+  , bid = require('./routes/bid');
 
 var app = express();
 
@@ -55,6 +57,8 @@ app.get('/signIn', signIn.signIn);
 app.get('/afterSignIn', signIn.afterSignIn);
 app.get('/Category/:id',category.showCategory);
 app.get('/Product/:id',product.showProduct);
+app.post('/Product/buy/:id',buy.buy);
+app.post('/Product/bid/:id',bid.bid);
 app.get('/myaccount', user.showUser);
 app.get('/bactivate', activate.bactivate);
 app.get('/sactivate', activate.sactivate);
@@ -62,10 +66,12 @@ app.get('/bdeactivate', activate.bdeactivate);
 app.get('/sdeactivate', activate.sdeactivate);
 app.get('/signOut',index.signout);
 app.get('/cart',cart.show);
-app.post('/Product/:id',buy.buy);
 app.get('/sell', sell.sell);
 app.post('/sell', sell.afterSell);
+app.post('/auctionsell', sell.afterAuctionSell);
 app.get('/transactions/:id', trans.show);
+app.post('/transaction/rate',trans.rate);
+app.get('/user/:id', user.show);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

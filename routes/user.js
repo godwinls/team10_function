@@ -30,4 +30,24 @@ exports.showUser = function(req, res){
 	        }},getSellInfo);	    
 	};	    
 	},getUserInfo);
+};
+
+exports.show = function(req, res){
+	if(req.session.user.Person_id == req.params.id)
+		res.redirect('/myaccount');
+	else{
+		var user = "SELECT * FROM Person, Seller,Customer WHERE Person.Person_id = Seller.Person_id " +
+				"AND Person.Person_id = Customer.Person_id AND Person.Person_id = "+ req.params.id;
+		db.fetchData(function(err, result){
+			if(err)
+				throw err;
+			else{
+				res.render('user',{
+					title: result[0].Person_first_name +" "+ result[0].Person_last_name,
+					user: req.session.user,
+					result: result
+				})
+			}
+		},user);
+	}
 }

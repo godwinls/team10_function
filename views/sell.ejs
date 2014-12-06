@@ -1,22 +1,75 @@
 <%- include header %>
-<form method="post" action= "/sell">
+<script type="text/javascript"> 
+            function displayForm(c){ 
+                if(c.value == "1"){ 
+                    document.getElementById("f1").style.visibility='visible'; 
+                    document.getElementById("f2").style.visibility='hidden'; 
+                } 
+                else if(c.value =="2"){ 
+                    document.getElementById("f1").style.visibility='hidden'; 
+                    document.getElementById("f2").style.visibility='visible'; 
+                } 
+                else{ 
+                }  
+            }         
+</script>     
+<form> 
+            <label>Direct Sell<input value="1" type="radio" name="formselector" onclick="displayForm(this)"></label>     
+            <label>Auction to Sell<input value="2" type="radio" name="formselector" onclick="displayForm(this)"></label>     
+ </form> 
+     
+        <form style="visibility:hidden" id="form1"><label>Form 1<input type="text"/> </label></form>     
+         
+        <form style="visibility:hidden" id="form2"><label>Form 2<input type="text"/> </label></form>     
+<form style ="visibility:hidden" id = "f1" method="post" action= "/sell">
   Product Name：     <input type="text" name="Product_name"/><br/>
   Product Price：     <input type="text" name="Product_price"/><br/>
-  Product Quantity：  <input type="number" name="Product_quantity" min= "1"/><br/>
+  Product Quantity：  <input type="number" name="Product_quantity" min= "1" /><br/>
   Product Info:       <input type="text" name="Product_info"/><br/>
+  
   Product Category：  <select name="Product_category">
-                      <option value="1">Appliance</option>
-                      <option value="2">Food</option>
+                      <option value="1">Collectibles&Arts</option>
+                      <option value="2">Electronics</option>
+                      <option value="3">Entertainment</option>
+                      <option value="4">Fashion</option>
+                      <option value="5">Home&Garden</option>
+                      <option value="6">Motors</option>
+                      <option value="7">SportingGoods</option>
+                      <option value="8">Toys&Hobbies</option>
+                      <option value="9">Other</option>
                       </select><br/>
   Product Condition:  <select name="Product_condition">
                       <option value="0">New</option>
                       <option value="1">Used</option>
                       </select><br/>
-  Buy or Bid：  <select name="Product_type">
-                      <option value="0">Buy</option>
-                      <option value="1">Bid</option>
-                      </select><br/>
-  
          <input type="submit" value="Sell"/>
 </form>
+
+<form style ="visibility:hidden" id = "f2" method="post" action= "/auctionsell">
+  Product Name：     <input type="text" name="Product_name"/><br/>
+  Product Direct Buy Price：     <input type="text" name="Product_buy_price"/><br/>
+  Product Auction Start Price：     <input type="text" name="Product_start_price"/><br/>
+  Auction listing time(from now) <select name="Product_list_time">
+                      <option value="1">1 day</option>
+                      <option value="2">3 day</option>
+                      </select><br/>
+  Product Info:       <input type="text" name="Product_info"/><br/>
+  Product Category：  <select name="Product_category">
+                       <option value="1">Collectibles&Arts</option>
+                      <option value="2">Electronics</option>
+                      <option value="3">Entertainment</option>
+                      <option value="4">Fashion</option>
+                      <option value="5">Home&Garden</option>
+                      <option value="6">Motors</option>
+                      <option value="7">SportingGoods</option>
+                      <option value="8">Toys&Hobbies</option>
+                      <option value="9">Other</option>
+                      </select><br/>
+  Product Condition:  <select name="Product_condition">
+                      <option value="0">New</option>
+                      <option value="1">Used</option>
+                      </select><br/>
+         <input type="submit" value="Sell"/>
+</form>
+
 <%- include footer %>
